@@ -72,26 +72,31 @@ Dim result
         'Set IEDoc1 = IE.document
     Dim objBrowser1 As New CDPBrowser
     Set Fen = objBrowser1.getTab
-    
+    Debug.Print Fen.url
     Sleep 1000
+    
    'Set Fen = objBrowser1.getElementByXPath("//body")
-   'Set Form2 = objBrowser1.getElementByID("title_simples_impression")
+   Set Form2 = Fen.getElementByID("title_simples_impression")
    'Form2.click
-   'a id="menu_advanced"
-   Set Fen1 = objBrowser1.getElementByXPath("//a[@id='menu_advanced']")
-   'Set Fen1 = objBrowser1.getElementByID("menu_advanced")
-   'Fen1.click
+   'a id="menu_advanced"  <h3 id="title_simples_impression" class="clearfix" onclick="if(window.myMenu) myMenu.impression();" onmouseover="switchClass(this);" onmouseout="switchClass(this);"><a>Imprimer</a></h3>
+   Set Fen1 = Fen.getElementByXPath("//a[@id='menu_advanced']")
+   Fen1.click
+   Sleep 500
+                                            
+                                            
+   Set Fen2 = Fen.getElementByID("title_advanced_impression")
+   Fen2.click
+   'title_advanced_impression
    'Fen.getElementByID("menu_advanced").click
-   For Each Elt In Fen1
-    Debug.Print Fen.Html
-       Essai = Elt.getElementByID("menu_advanced")
-       
-       Sleep 1000
-       Exit For
-    Next
-   
+   'tool_avances_impressions_extrait
+   Set Fen3 = Fen.getElementByID("tool_avances_impressions_extrait")
+   Fen3.click
+   Sleep 500
+   'a onclick="carte.getWorker().validate();"
+   Set Fen4 = Fen.getElementByXPath("//a[@class='action']")
+   Fen4.click
    MsgBox "essai"
-  
+   
     'objBrowser.quit
     Set trajet = Nothing: Set listeTrajets = Nothing: Set objBrowser = Nothing
-End Function  
+End Function
